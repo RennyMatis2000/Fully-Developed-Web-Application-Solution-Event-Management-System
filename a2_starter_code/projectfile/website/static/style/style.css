@@ -1,0 +1,201 @@
+/* body css */
+body {
+  background-color: #f5f2ec;
+}
+
+/* home page jumbotron css */
+.homejumbotronimage {
+    background: url("../img/HomePageJumbo.jpg") center center;
+    background-size: cover;
+    color: #ffffff;
+    font-family: 'Merriweather';
+    /* black outline on white font for maximum readability over multiple colours */
+    text-shadow: 
+    -1px -1px 0 #000,  
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000;
+}
+
+/* event creation and update page jumbotron css */
+.creationjumbotronimage {
+    background: url("../img/EventCreationJumbo.jpg") center center;
+    background-size: cover;
+    color: white;
+    font-family: 'Merriweather';
+    /* black outline on white font for maximum readability over multiple colours */
+    text-shadow: 
+    -1px -1px 0 #000,  
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000;
+}
+
+/* event details page jumbotron css */
+.detailjumbotronimage {
+    background: url("../img/DetailJumbotronImage.jpg") center center;
+    background-size: cover;
+    color: white;
+    font-family: 'Merriweather';
+    /* black outline on white font for maximum readability over multiple colours */
+    text-shadow: 
+    -1px -1px 0 #000,  
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000;
+}
+
+/* booking page jumbotron css */
+.bookingjumbotronimage {
+    background: url("../img/BookingJumbotronImage.jpg") center center;
+    background-size: cover;
+    color: white;
+    font-family: 'Merriweather';
+    /* black outline on white font for maximum readability over multiple colours */
+    text-shadow: 
+    -1px -1px 0 #000,  
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000;
+}
+
+/* carousel image css */
+.carousel-inner img {
+  height: 300px;    
+  object-fit: cover;   
+  width: 100%;         
+}
+
+/* event image css */
+.event-image-cap {
+  /* event image in event details page is capped, as without this pixel cap the image can be extremely large and proportionately makes the page look smaller */
+  max-width: 500px;   
+  max-height: 500px;     
+  display: block;     
+  margin: 1rem auto;  
+}
+
+/* Ensure images in the cards remain at the top with a fixed size */
+.card-img-top {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+/* css for title of pages to look large and uniform, and align center */
+.page-header {
+  font-size: 3.5rem;
+  color: #556B2F;        
+  text-align: center;
+  margin-top: 1rem; 
+  margin-bottom: 1rem; 
+  font-family: 'Merriweather';
+  font-weight: bold;
+}
+
+/* css for food event categories to look medium size and uniform, and align center*/
+.category-header {
+  font-size: 2rem;
+  color: #556B2F;        
+  text-align: center;
+  margin-top: 1rem; 
+  margin-bottom: 1rem; 
+  font-family: 'Roboto Mono';
+  font-weight: bold;
+}
+
+/* css for titles of each event details row section to look medium sized and uniform, and align left */
+.detail-header {
+  font-size: 2rem;
+  color: #556B2F;        
+  text-align: left;
+  margin-top: 1rem; 
+  margin-bottom: 1rem; 
+  font-family: 'Roboto Mono';
+}
+
+/* change font of descriptions */
+.descriptive {
+  font-family: 'Raleway';
+}
+
+/* change navbar visually */
+.navbar {
+  font-family: 'Roboto Mono';
+  background-color: rgb(198, 221, 187);  
+}
+
+/* change searchbar placeholder text font */
+.searchbar {
+  font-family: 'Roboto Mono';
+}
+
+/* change card title font for visibility */
+.card-title {
+  font-family: 'Merriweather';
+  color: #008b35;
+  font-weight: bold;
+}
+
+/* change card font for the descriptions */
+.card-body {
+  font-family: 'Raleway';
+  color: #008b35;  
+}
+
+/* change card text font and colour for booking ID and booked on time */
+.card-text-info {
+  font-family: 'Merriweather';
+  color: #008b35;  
+}
+
+/* change form font */
+form {
+  font-family: 'Raleway';
+  font-weight: bold;
+  color: #556B2F;
+}
+
+/* change form text font */
+.form-text {
+  color: #556B2F;
+}
+
+/* change font of the comment section */
+.list-group-item {
+  font-family: 'Roboto Mono';
+}
+
+/* change footer visually */
+footer {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 1rem;
+  background-color: rgb(198, 221, 187);
+  font-family: 'Roboto Mono';
+  font-weight: bold;
+}
+
+/* change font and colour of all modal popups */
+.modal-content {
+  font-family: 'Roboto Mono';
+  color: #556B2F;
+}
+
+/* change all buttons to display Roboto Mono font */
+.btn-success {
+  font-family: 'Roboto Mono';
+}
+
+/* ensure visually there is a separation from the box of the footer bar, and the footer of the entire webpage */
+.foodievent-footer
+{
+background-color: rgb(211, 231, 201);
+}
+
+/* offset container-flex expanding offscreen through use of padding */
+.container-flex {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
