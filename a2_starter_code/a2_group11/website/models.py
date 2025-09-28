@@ -23,7 +23,8 @@ class User(db.Model, UserMixin):
     __tablename__ = "users"
     # Placeholder User data attributes subject to change
     user_id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(50), unique=True, nullable=False)
+    first_name = db.Column(db.String(50), unique=True, nullable=False)
+    surname = db.Column(db.String(50), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     phone = db.Column(db.String(10), nullable=True)
     address = db.Column(db.String(50), nullable=True)
