@@ -1,10 +1,17 @@
 from flask import Blueprint, render_template, request, session
+from . models import Event
+from . import db
 
 main_bp = Blueprint('main', __name__)
 
 @main_bp.route('/')
 def index():
     return render_template('index.html')
+
+# @main_bp.route('/')
+# def index():
+#     events = db.session.scalars(db.select(Event)).all()    
+#     return render_template('index.html', events=events)
 
 @main_bp.route('/display_event_details')
 def display_event_details():

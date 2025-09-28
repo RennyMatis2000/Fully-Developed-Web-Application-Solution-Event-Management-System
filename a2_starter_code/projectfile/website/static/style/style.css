@@ -19,7 +19,7 @@ body {
 
 /* event creation and update page jumbotron css */
 .creationjumbotronimage {
-    background: url("../img/EventCreationJumbo.jpg") center center;
+    background: url("/static/img/EventCreationJumbo.jpg") center center no-repeat;
     background-size: cover;
     color: white;
     font-family: 'Merriweather';
@@ -198,4 +198,22 @@ background-color: rgb(211, 231, 201);
 .container-flex {
   padding-left: 0.75rem;
   padding-right: 0.75rem;
+}
+
+/* Create container css */
+.container-create {
+  font-family: 'Raleway';
+  font-weight: bold;
+  color: #556B2F;
+}
+
+/* Alert css to fit theme of FoodieVent website */
+.alert {
+  background: #e8f5ec;          
+  color: #146c43;               
+  border: none;
+  border-left: 6px solid #198754;
+  box-shadow: 0 8px 24px rgba(0,0,0,.08);
+  font-family: 'Roboto Mono';
+  font-weight: 600;
 }

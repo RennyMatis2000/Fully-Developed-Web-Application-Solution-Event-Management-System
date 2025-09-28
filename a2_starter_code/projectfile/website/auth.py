@@ -32,3 +32,11 @@ def login():
         else:
             flash(error)
     return render_template('user.html', form=login_form, heading='Login')
+
+@auth_bp.route('/register', methods=['GET','POST'])
+def register():
+    form = RegisterForm()
+    if form.validate_on_submit():
+        print('Successfully registered')
+        return redirect(url_for('auth.login'))
+    return render_template('user.html', form=form)
