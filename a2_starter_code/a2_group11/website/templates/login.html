@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+<!-- Title -->
+{% block title %}FoodieVent Login Page{% endblock %}
+{% from "bootstrap5/form.html" import render_form %}
+{% block content %}
+
+<div class="container col-md-6">
+  <h2 class="category-header">Login Form</h2>
+  <!--update the action and the method with relevant information-->
+  <form action="", method="">
+    <!-- keeps the label and text in a group vertically stacked--> 
+    <div class="form-group py-1">
+      <label for="email">Email:</label>
+      <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+    </div>
+  
+    <div class="form-group py-1">
+      <label for="pwd">Password:</label>
+      <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+    </div>
+
+    <button type="submit" class="btn btn-success">Submit</button>
+ 
+  </form>
+</div>
+
+{% endblock %}
