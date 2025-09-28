@@ -12,7 +12,7 @@ def display_event_details():
 
 @main_bp.route('/display_booking_history')
 def display_booking_history():
-    return render_template('bookinghistory.html')
+    return render_template('userbookinghistory.html')
 
 @main_bp.route('/create_update_event')
 def create_update_event():
