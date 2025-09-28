@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">  
+    <div class="row mt-5 mb-3">  
+      <div class="col-md-12">  
+        <div class="float-left">  
+          <h1 class="mb-0">{{event.title}}</h1>  
+          <p>{{event.category_type}}</p>  
+        </div>  
+ 
+        <div class="float-right text-right">  
+          <p class="mb-0">Vendors attending: </p>  
+          <h2 id="Vendors">{{event.vendor_names}}</h2>  
+        </div>  
+      </div>  
+    </div>  
+ 
+    <!-- Event --> 
+    <div class="row">  
+      <div class="col-md-12">  
+        <div class="card my-3">  
+          <div class="card-body">  
+            <div class="media">  
+              <img class="align-self-start mr-3" src="{{event.image}}">  
+              <div class="media-body">  
+                <small class="font-weight-bold text-muted">{{event.venue}}</small>  
+                <h5 class="mt-0">{{event.title}}</h5>  
+                <p>{{event.description}}</p>  
+                <a href="#" class="btn btn-success">Book Now</a>  
+              </div>  
+            </div>  
+          </div>  
+        </div>  
+      </div>  
+    </div>
+    <hr>
+    <!-- Comments -->  
+    <div class="row">  
+      <div class="col-md-12">  
+        <h2>Comments</h2>  
+      </div>  
+    </div>  
+ 
+    <div class="row border-bottom">  
+      {% for comment in event.comments %}
+      <div class="col-md-12">  
+        <b>{{comment.user}} <span class="ml-2 text-muted">{{comment.comment_date}}</span></b>
+        <p>{{comment.contents}}</p>  
+      </div> 
+      {% endfor %} 
+    </div>  
+  </div> 
+{% endblock %}

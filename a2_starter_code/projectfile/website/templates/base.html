@@ -13,7 +13,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Raleway:wght@400;600;700&family=Roboto+Mono:wght@400;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="static/style/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
 
     <!-- Title -->
     <title>{% block title %}FoodieVent Base{% endblock %}</title>
@@ -26,7 +26,7 @@
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="index.html">FoodieVent</a>
+                <a class="navbar-brand" a href="{{ url_for('main.index') }}">FoodieVent</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -35,11 +35,10 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="eventcreationupdate.html">Create
-                                Event</a>
+                            <a class="nav-link" href="{{ url_for('events.create') }}">Create Event</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="userbookinghistory.html">Booking
+                            <a class="nav-link" href="{{ url_for('main.display_booking_history') }}">Booking
                                 History</a>
                         </li>
                         <li class="nav-item dropdown">
