@@ -39,4 +39,10 @@ def register():
     if form.validate_on_submit():
         print('Successfully registered')
         return redirect(url_for('auth.login'))
-    return render_template('user.html', form=form)
+    return render_template('user.html', form=form, heading = 'Register an Account')
+
+@auth_bp.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('main.index'))

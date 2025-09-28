@@ -14,18 +14,18 @@ def index():
 def display_event_details():
     return render_template('eventdetails.html')
 
-@main_bp.route('/login', methods = ['GET', 'POST'])
-def login():
-    email = request.values.get("email")
-    passwd = request.values.get("pwd")
-    print (f"Email: {email}\nPassword: {passwd}")
-    # store email in session
-    session['email'] = request.values.get('email')
-    return render_template('login.html')
+# @main_bp.route('/login', methods = ['GET', 'POST'])
+# def login():
+#     email = request.values.get("email")
+#     passwd = request.values.get("pwd")
+#     print (f"Email: {email}\nPassword: {passwd}")
+#     # store email in session
+#     session['email'] = request.values.get('email')
+#     return render_template('login.html')
 
-@main_bp.route('/logout')
-def logout():
-    if 'email' in session:
-        session.pop('email')
-    return 'User logged out'
+# @main_bp.route('/logout')
+# def logout():
+#     if 'email' in session:
+#         session.pop('email')
+#     return 'User logged out'
 
