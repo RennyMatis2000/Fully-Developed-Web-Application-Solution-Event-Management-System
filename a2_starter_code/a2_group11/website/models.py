@@ -21,8 +21,7 @@ class TicketType(enum.Enum):
 
 class User(db.Model, UserMixin):
     __tablename__ = "users"
-    # Placeholder User data attributes subject to change
-    user_id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)  # was user_id
     first_name = db.Column(db.String(50), unique=True, nullable=False)
     surname = db.Column(db.String(50), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
@@ -30,24 +29,18 @@ class User(db.Model, UserMixin):
     address = db.Column(db.String(50), nullable=True)
     password_hash = db.Column(db.String(255), nullable=False)
 
-    #Relationships to orders and comments from users
     orders = db.relationship("Order", backref="user")
     comments = db.relationship("Comment", backref="user")
 
-    # string print method
-    def __repr__(self):
-        return f"Name: {self.username}"
-
 class Event(db.Model):
     __tablename__ = "events"
-    # Placeholder Event data attributes subject to change
-    event_id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)  # was event_id
     title = db.Column(db.String(200), nullable=False)
-    image = db.Column(db.String(255), nullable=True)   
+    image = db.Column(db.String(255), nullable=True)
     start_time = db.Column(db.DateTime, nullable=False)
     end_time = db.Column(db.DateTime, nullable=False)
     venue = db.Column(db.String(200), nullable=False)
-    vendor_names = db.Column(db.String(255))           
+    vendor_names = db.Column(db.String(255))
     description = db.Column(db.Text)
     total_tickets = db.Column(db.Integer, nullable=False)
     free_sampling = db.Column(db.Boolean, default=False)
@@ -56,42 +49,36 @@ class Event(db.Model):
     status = db.Column(db.Enum(EventStatus), default=EventStatus.OPEN)
     status_date = db.Column(db.DateTime, default=datetime.now)
 
-    # Relationships to orders and comments from events
-    orders = db.relationship("Order", backref = "event")
-    comments = db.relationship("Comment", backref = "event")
+    orders = db.relationship("Order", backref="event")
+    comments = db.relationship("Comment", backref="event")
 
-    # string print method
     def __repr__(self):
         return f"Name: {self.title}"
 
 class Comment(db.Model):
     __tablename__ = "comments"
-    # Placeholder Comment data attributes subject to change
-    comment_id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)  # was comment_id
     contents = db.Column(db.Text, nullable=False)
     comment_date = db.Column(db.DateTime, default=datetime.now)
 
-    # Foreign keys
-    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"), nullable=False)
-    event_id = db.Column(db.Integer, db.ForeignKey("events.event_id"), nullable=False)
+    # Foreign keys -> now point to users.id / events.id
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    event_id = db.Column(db.Integer, db.ForeignKey("events.id"), nullable=False)
 
-    # string print method
     def __repr__(self):
-        return f"Name: {self.comment_id}"
+        return f"Name: {self.id}"
 
 class Order(db.Model):
     __tablename__ = "orders"
-    # Placeholder Order data attributes subject to change
-    order_id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)  # was order_id
     booked = db.Column(db.Boolean, nullable=False, default=False)
-    tickets_purchased = db.Column(db.Integer, nullable=False)  
+    tickets_purchased = db.Column(db.Integer, nullable=False)
     booking_time = db.Column(db.DateTime, default=datetime.now, nullable=False)
     ticket_type = db.Column(db.Enum(TicketType), nullable=False)
 
-    # Foreign keys
-    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"), nullable=False)
-    event_id = db.Column(db.Integer, db.ForeignKey("events.event_id"), nullable=False)
+    # Foreign keys -> now point to users.id / events.id
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    event_id = db.Column(db.Integer, db.ForeignKey("events.id"), nullable=False)
 
-    # string print method
     def __repr__(self):
-        return f"Name: {self.order_id}"
+        return f"Name: {self.id}"

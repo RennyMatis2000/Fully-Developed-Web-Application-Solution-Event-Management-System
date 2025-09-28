@@ -15,19 +15,19 @@ def login():
     login_form = LoginForm()
     error = None
     if login_form.validate_on_submit():
-        user_name = login_form.user_name.data
+        email= login_form.email.data
         password = login_form.password.data
-        user = db.session.scalar(db.select(User).where(User.name==user_name))
+        user = db.session.scalar(db.select(User).where(User.email==email))
         if user is None:
-            error = 'Incorrect user name'
+            error = 'Incorrect email'
         elif not check_password_hash(user.password_hash, password): # takes the hash and cleartext password
             error = 'Incorrect password'
         if error is None:
             login_user(user)
             nextp = request.args.get('next') # this gives the url from where the login page was accessed
             print(nextp)
-            if next is None or not nextp.startswith('/'):
-                return redirect(url_for('index'))
+            if nextp is None or not nextp.startswith('/'):
+                return redirect(url_for('main.index'))
             return redirect(nextp)
         else:
             flash(error)
@@ -37,6 +37,16 @@ def login():
 def register():
     form = RegisterForm()
     if form.validate_on_submit():
+        user = User(
+            first_name=form.first_name.data,
+            surname=form.surname.data,
+            email=form.email.data,
+            phone=form.phone.data,
+            address=form.address.data,   
+            password_hash=generate_password_hash(form.password.data)
+        )
+        db.session.add(user)
+        db.session.commit()
         print('Successfully registered')
         return redirect(url_for('auth.login'))
     return render_template('user.html', form=form, heading = 'Register an Account')
