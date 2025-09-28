@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="static/style/style.css">
 
     <!-- Title -->
-    <title>IAB207 Assignment 2 FoodieVent</title>
+    <title>{% block title %}FoodieVent Base{% endblock %}</title>
 </head>
 
 <body>
@@ -45,16 +45,16 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                Sign-out
+                                Sign-in
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="#">Register</a></li>
-                                <li><a class="dropdown-item" href="#">Logout</a></li>
+                                <li><a class="dropdown-item" href="#">Login</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
                                 <li><a class="dropdown-item" href="#">Reset login details</a></li>
-                                <li><a class="dropdown-item" href="#">Login</a></li>
+                                <li><a class="dropdown-item" href="#">Logout</a></li>
                             </ul>
                         </li>
                     </ul>
