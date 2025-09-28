@@ -9,7 +9,7 @@ event_bp = Blueprint('events', __name__, url_prefix='/events')
 
 @event_bp.route('/<event_id>')
 def show(event_id):
-    event = db.session.scalar(db.select(Event).where(Event.event_id==event_id))
+    event = db.session.scalar(db.select(Event).where(Event.id==event_id))
     # Generate comment form
     cform = CommentForm()
     return render_template('events/show.html', event=event, form=cform)
@@ -81,7 +81,7 @@ def update(event_id):
 def comment(event_id):
   # here the form is created  form = CommentForm()
   form = CommentForm()
-  event = db.session.scalar(db.select(Event).where(Event.event_id==event_id))
+  event = db.session.scalar(db.select(Event).where(Event.id==event_id))
   if form.validate_on_submit():	#this is true only in case of POST method
     # read the current form
     event = Event(contents=form.contents.data, event=event)
