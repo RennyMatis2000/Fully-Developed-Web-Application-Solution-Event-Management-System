@@ -43,7 +43,7 @@ class EventForm(FlaskForm):
 
 # creates the login information
 class LoginForm(FlaskForm):
-    user_name=StringField("User Name", validators=[InputRequired('Enter user name')])
+    email = StringField("Email Address", validators=[Email("Please enter a valid email")])
     password=PasswordField("Password", validators=[InputRequired('Enter user password')])
     submit = SubmitField("Login")
 
