@@ -2,6 +2,7 @@ from . import db
 from datetime import datetime
 import enum
 from flask_login import UserMixin
+from sqlalchemy import Numeric 
 
 class EventCategory(enum.Enum):
     FOOD = "Food"
@@ -71,10 +72,9 @@ class Comment(db.Model):
 class Order(db.Model):
     __tablename__ = "orders"
     id = db.Column(db.Integer, primary_key=True)  # was order_id
-    booked = db.Column(db.Boolean, nullable=False, default=False)
+    ticket_price = db.Column(Numeric(10, 2), nullable=False)
     tickets_purchased = db.Column(db.Integer, nullable=False)
     booking_time = db.Column(db.DateTime, default=datetime.now, nullable=False)
-    ticket_type = db.Column(db.Enum(TicketType), nullable=False)
 
     # Foreign keys -> now point to users.id / events.id
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
