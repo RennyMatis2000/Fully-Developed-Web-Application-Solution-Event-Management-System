@@ -23,8 +23,8 @@ class TicketType(enum.Enum):
 class User(db.Model, UserMixin):
     __tablename__ = "users"
     id = db.Column(db.Integer, primary_key=True)  # was user_id
-    first_name = db.Column(db.String(50), unique=True, nullable=False)
-    surname = db.Column(db.String(50), unique=True, nullable=False)
+    first_name = db.Column(db.String(50), nullable=False)
+    surname = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     phone = db.Column(db.String(10), nullable=True)
     address = db.Column(db.String(50), nullable=True)
@@ -44,6 +44,7 @@ class Event(db.Model):
     vendor_names = db.Column(db.String(255))
     description = db.Column(db.Text)
     total_tickets = db.Column(db.Integer, nullable=False)
+    ticket_price = db.Column(db.Numeric(10, 2), nullable=False)
     free_sampling = db.Column(db.Boolean, default=False)
     provide_takeaway = db.Column(db.Boolean, default=False)
     category_type = db.Column(db.Enum(EventCategory), nullable=False)
@@ -72,9 +73,9 @@ class Comment(db.Model):
 class Order(db.Model):
     __tablename__ = "orders"
     id = db.Column(db.Integer, primary_key=True)  # was order_id
-    ticket_price = db.Column(Numeric(10, 2), nullable=False)
     tickets_purchased = db.Column(db.Integer, nullable=False)
     booking_time = db.Column(db.DateTime, default=datetime.now, nullable=False)
+    purchased_amount = db.Column(Numeric(10, 2), nullable=False)
 
     # Foreign keys -> now point to users.id / events.id
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
