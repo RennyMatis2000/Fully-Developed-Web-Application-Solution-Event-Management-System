@@ -1,8 +1,10 @@
 from flask_wtf import FlaskForm
-from wtforms.fields import TextAreaField, SubmitField, StringField, TelField, IntegerField, SelectField, BooleanField, PasswordField, DateTimeLocalField
-from wtforms.validators import DataRequired, InputRequired, Length, Email, EqualTo
-from . models import EventCategory
+from wtforms.fields import TextAreaField, SubmitField, StringField, TelField, IntegerField, SelectField, BooleanField, PasswordField, DateTimeLocalField, DecimalField
+from wtforms.validators import DataRequired, InputRequired, Length, Email, EqualTo, NumberRange
+from . models import EventCategory, User
+from . import db
 from flask_wtf.file import FileRequired, FileField, FileAllowed
+from flask import flash
 from werkzeug.utils import secure_filename
 import os
 
@@ -34,6 +36,7 @@ class EventForm(FlaskForm):
    venue = StringField("Venue", validators=[DataRequired()])
    vendor_names = StringField("List of vendors", validators=[InputRequired(), Length(max=255)])
    total_tickets = IntegerField("Total tickets", validators=[DataRequired()])
+   ticket_price = DecimalField("Individual ticket price", places=2, validators=[InputRequired(), NumberRange(min=0)])
    free_sampling = BooleanField("Free sampling?")
    provide_takeaway = BooleanField("Provide takeaway?")
    category_type = SelectField("Category", choices=[(e.name, e.value) for e in EventCategory], validators=[DataRequired()])
@@ -41,12 +44,18 @@ class EventForm(FlaskForm):
   # Submission button
    submit = SubmitField("Create Event")
 
+# Purchase ticket form
+class PurchaseTicketForm(FlaskForm):
+   tickets_purchased = IntegerField('Tickets Purchased', validators=[DataRequired()])
+
+  # Submission button
+   submit = SubmitField("Confirm Purchase")
+
 # creates the login information
 class LoginForm(FlaskForm):
     email = StringField("Email Address", validators=[Email("Please enter a valid email")])
     password=PasswordField("Password", validators=[InputRequired('Enter user password')])
     submit = SubmitField("Login")
-
 
  # this is the registration form
 class RegisterForm(FlaskForm):
