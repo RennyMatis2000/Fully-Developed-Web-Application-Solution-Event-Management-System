@@ -71,12 +71,15 @@ def update(event_id):
         category_type=form.category_type.data
       )
       
-    db.session.add(event)
+    db.session.update(event)
     db.session.commit()
     flash('Successfully updated Food and Drink Festival event', 'success')
     return redirect(url_for('event.update'))
     # Always end with redirect when form is valid
   return render_template('events/update.html', form=form)
+
+# Cancel event
+
 
 # Purchase tickets to generate an order, and redirect to booking history page
 
