@@ -217,6 +217,8 @@ background-color: rgb(211, 231, 201);
   font-family: 'Raleway';
   font-weight: bold;
   color: #556B2F;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
 }
 
 /* Alert css to fit theme of FoodieVent website */
