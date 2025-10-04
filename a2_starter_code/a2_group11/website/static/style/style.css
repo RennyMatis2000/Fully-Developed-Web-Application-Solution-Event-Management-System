@@ -200,6 +200,18 @@ background-color: rgb(211, 231, 201);
   padding-right: 0.75rem;
 }
 
+/* offset row border bottom expanding offscreen through use of padding */
+.border-bottom {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+/* offset container fluid expanding offscreen through use of padding */
+.container-fluid {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
 /* Create container css */
 .container-create {
   font-family: 'Raleway';
