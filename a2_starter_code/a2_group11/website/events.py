@@ -106,8 +106,8 @@ def purchase_tickets(event_id):
   if form.validate_on_submit():
     tickets = form.tickets_purchased.data
 
-    if tickets == 0 or tickets > event.total_tickets:
-       flash(f'Order was unable to be booked, please enter a valid number of tickets.')
+    if tickets > event.total_tickets:
+       flash(f'Order was unable to be booked, please enter a value less than the remaining amount of tickets. Tickets remaining: {event.total_tickets}.')
     else:
   
       order = Order(
