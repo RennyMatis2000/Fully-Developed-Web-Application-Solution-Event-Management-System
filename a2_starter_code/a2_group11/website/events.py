@@ -102,21 +102,30 @@ def cancel(event_id):
 @login_required
 def purchase_tickets(event_id):
   event = db.session.get(Event, event_id)
-
   form = PurchaseTicketForm()
   if form.validate_on_submit():
-    order = Order(
-        event_id=event.id,
-        user_id=current_user.id,
-        tickets_purchased=form.tickets_purchased.data,
-        purchased_amount=event.ticket_price * form.tickets_purchased.data,
-        booking_time= datetime.now()
-    )
-    db.session.add(order)
-    db.session.commit()
-    flash(f'Thank you for your purchase! Your order number is #{order.id}')
-    return redirect(url_for('users.display_booking_history'))
-    # Always end with redirect when form is valid
+    tickets = form.tickets_purchased.data
+
+    if tickets == 0 or tickets > event.total_tickets:
+       flash(f'Order was unable to be booked, please enter a valid number of tickets.')
+    else:
+  
+      order = Order(
+          event_id=event.id,
+          user_id=current_user.id,
+          tickets_purchased=form.tickets_purchased.data,
+          purchased_amount=event.ticket_price * form.tickets_purchased.data,
+          booking_time= datetime.now()
+      )
+      event.total_tickets -= tickets
+      if event.total_tickets == 0:
+        event.status = EventStatus.SOLDOUT
+
+      db.session.add(order)
+      db.session.commit()
+      flash(f'Thank you for your purchase! Your order number is #{order.id}')
+      return redirect(url_for('users.display_booking_history'))
+      # Always end with redirect when form is valid
   return render_template('events/purchase.html', form=form, event=event)
 
 @event_bp.route('/<int:event_id>/comment', methods = ['GET', 'POST'])

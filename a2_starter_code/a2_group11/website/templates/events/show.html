@@ -25,9 +25,10 @@
       <div class="card my-3">
         <div class="card-body">
           <img class="card-img-top" src="{{ event.image }}" alt="event image">
-          <small class="font-weight-bold text-muted">{{event.venue}}</small>
+          <small class="font-weight-bold text-muted">Located at, {{event.venue}}</small>
           <h5 class="mt-0">{{event.title}}</h5>
-          <span class="badge bg-success">{{event.status.name}}</span>
+          <span class="badge bg-success">Event Status: {{event.status.name}}</span>
+          <span class="badge bg-success">Tickets Remaining: {{event.total_tickets}}</span>
           <p>{{event.description}}</p>
           <a href="{{ url_for('events.purchase_tickets', event_id=event.id) }}" class="btn btn-success">
             Book Now
