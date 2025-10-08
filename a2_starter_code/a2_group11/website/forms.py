@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms.fields import TextAreaField, SubmitField, StringField, TelField, IntegerField, SelectField, BooleanField, PasswordField, DateTimeLocalField, DecimalField
 from wtforms.validators import DataRequired, InputRequired, Length, Email, EqualTo, NumberRange
-from . models import EventCategory, User
+from . models import EventCategory, User, Event
 from . import db
 from flask_wtf.file import FileRequired, FileField, FileAllowed
 from flask import flash
@@ -42,11 +42,11 @@ class EventForm(FlaskForm):
    category_type = SelectField("Category", choices=[(e.name, e.value) for e in EventCategory], validators=[DataRequired()])
 
   # Submission button
-   submit = SubmitField("Create Event")
+   submit = SubmitField("Create/Update Event")
 
 # Purchase ticket form
 class PurchaseTicketForm(FlaskForm):
-   tickets_purchased = IntegerField('Tickets Purchased', validators=[DataRequired()])
+   tickets_purchased = IntegerField(f'How many tickets would you like to purchase?', validators=[DataRequired()])
 
   # Submission button
    submit = SubmitField("Confirm Purchase")

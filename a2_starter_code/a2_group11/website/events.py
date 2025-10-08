@@ -24,6 +24,7 @@ def show(event_id):
 def create():
   print('Method type: ', request.method)
   form = EventForm()
+  form.submit.label.text = "Create Event"
   if form.validate_on_submit():
     db_file_path = check_upload_file(form)
     event = Event(
@@ -56,6 +57,7 @@ def update(event_id):
   print('Method type: ', request.method)
   event = db.session.get(Event, event_id)
   form = EventForm(obj=event)
+  form.submit.label.text = "Update Event"
 
   if form.validate_on_submit():
     db_file_path = check_upload_file(form)
