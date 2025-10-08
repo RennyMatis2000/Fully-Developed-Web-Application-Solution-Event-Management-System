@@ -22,7 +22,7 @@ class TicketType(enum.Enum):
 
 class User(db.Model, UserMixin):
     __tablename__ = "users"
-    id = db.Column(db.Integer, primary_key=True)  # was user_id
+    id = db.Column(db.Integer, primary_key=True)  # user's id
     first_name = db.Column(db.String(50), nullable=False)
     surname = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
@@ -35,7 +35,7 @@ class User(db.Model, UserMixin):
 
 class Event(db.Model):
     __tablename__ = "events"
-    id = db.Column(db.Integer, primary_key=True)  # was event_id
+    id = db.Column(db.Integer, primary_key=True) # event's id
     title = db.Column(db.String(200), nullable=False)
     image = db.Column(db.String(255), nullable=True)
     start_time = db.Column(db.DateTime, nullable=False)
@@ -50,16 +50,19 @@ class Event(db.Model):
     category_type = db.Column(db.Enum(EventCategory), nullable=False)
     status = db.Column(db.Enum(EventStatus), default=EventStatus.OPEN)
     status_date = db.Column(db.DateTime, default=datetime.now)
+    creator_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
 
     orders = db.relationship("Order", backref="event")
     comments = db.relationship("Comment", backref="event")
+    creator = db.relationship("User", backref="events_created")
+    
 
     def __repr__(self):
         return f"Name: {self.title}"
 
 class Comment(db.Model):
     __tablename__ = "comments"
-    id = db.Column(db.Integer, primary_key=True)  # was comment_id
+    id = db.Column(db.Integer, primary_key=True)  # comment's id
     contents = db.Column(db.Text, nullable=False)
     comment_date = db.Column(db.DateTime, default=datetime.now)
 
@@ -72,7 +75,7 @@ class Comment(db.Model):
 
 class Order(db.Model):
     __tablename__ = "orders"
-    id = db.Column(db.Integer, primary_key=True)  # was order_id
+    id = db.Column(db.Integer, primary_key=True)  # order's id
     tickets_purchased = db.Column(db.Integer, nullable=False)
     booking_time = db.Column(db.DateTime, default=datetime.now, nullable=False)
     purchased_amount = db.Column(Numeric(10, 2), nullable=False)

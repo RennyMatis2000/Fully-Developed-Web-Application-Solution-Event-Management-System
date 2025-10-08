@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash, abort
 from datetime import datetime
-from . models import Event, Order
+from . models import Event, Order, EventStatus
 from . forms import EventForm, CommentForm, PurchaseTicketForm, check_upload_file
 from . import db
 from flask_login import login_required, current_user
@@ -38,7 +38,8 @@ def create():
       ticket_price=form.ticket_price.data,
       free_sampling=form.free_sampling.data,
       provide_takeaway=form.provide_takeaway.data,
-      category_type=form.category_type.data
+      category_type=form.category_type.data,
+      creator_id=current_user.id
       )
     db.session.add(event)
     db.session.commit()
@@ -79,8 +80,24 @@ def update(event_id):
   return render_template('events/update.html', form=form)
 
 # Cancel event
+@event_bp.route('/<int:event_id>/cancel', methods=['POST'])
+@login_required
+def cancel(event_id):
+    # Fetch the event by ID
+    event = db.session.get(Event, event_id)
+    if event.creator_id != current_user.id:
+        flash(f'The event: {event.title} was not created by the currently logged in user.')
+        return redirect(url_for('events.show', event_id=event.id))
 
+    if event.status != EventStatus.CANCELLED:
+        event.status = EventStatus.CANCELLED
+        db.session.commit()
+        flash(f'The event: {event.title} has been cancelled.')
+    else:
+        flash(f'The event: {event.title} cannot be cancelled, as it is already cancelled.')
 
+    return redirect(url_for('events.show', event_id=event.id))
+      
 # Purchase tickets to generate an order, and redirect to booking history page
 
 @event_bp.route('/<int:event_id>/purchase', methods = ['GET', 'POST'])
