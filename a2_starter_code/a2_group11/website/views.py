@@ -8,35 +8,35 @@ main_bp = Blueprint('main', __name__)
 @main_bp.route('/')
 def index():
     events = db.session.scalars(db.select(Event)).all()    
-    return render_template('index.html', events=events)
+    return render_template('index.html', events=events, category="")
 
 @main_bp.route('/food')
 def food():
     events = db.session.scalars(
         db.select(Event).where(Event.category_type == EventCategory.FOOD)
     ).all()
-    return render_template('index.html', events=events)
+    return render_template('index.html', events=events, category='Food')
 
 @main_bp.route('/drink')
 def drink():
     events = db.session.scalars(
         db.select(Event).where(Event.category_type == EventCategory.DRINK)
     ).all()
-    return render_template('index.html', events=events)
+    return render_template('index.html', events=events, category='Drink')
 
 @main_bp.route('/cultural')
 def cultural():
     events = db.session.scalars(
         db.select(Event).where(Event.category_type == EventCategory.CULTURAL)
     ).all()
-    return render_template('index.html', events=events)
+    return render_template('index.html', events=events, category='Cultural')
 
 @main_bp.route('/dietary')
 def dietary():
     events = db.session.scalars(
         db.select(Event).where(Event.category_type == EventCategory.DIETARY)
     ).all()
-    return render_template('index.html', events=events)
+    return render_template('index.html', events=events, category='Dietary')
 
 @main_bp.route('/display_event_details')
 def display_event_details():
