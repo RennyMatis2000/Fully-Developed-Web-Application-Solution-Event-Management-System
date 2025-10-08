@@ -38,7 +38,8 @@ def create():
       ticket_price=form.ticket_price.data,
       free_sampling=form.free_sampling.data,
       provide_takeaway=form.provide_takeaway.data,
-      category_type=form.category_type.data
+      category_type=form.category_type.data,
+      creator_id=current_user.id
       )
     db.session.add(event)
     db.session.commit()
