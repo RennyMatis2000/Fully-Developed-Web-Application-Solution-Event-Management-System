@@ -1,119 +1,52 @@
 <!-- Extension inherits from base.html file -->
 {% extends "base.html" %}
 
-  
 {% block title %}FoodieVent - User Booking History Page{% endblock %}
-    
-      <!-- Booking History page Jumbotron -->
-      <div class="p-5 bookingjumbotronimage rounded-3">
-        <div class="jumbotronback container-fluid py-5">
-          <h1 class="display-5 fw-bold">User's Booking History</h1>
-          <p class="col-md-8 fs-4">
-            Are you excited for your upcoming events?
-          </p>
-        </div>
-      </div>
 
 {% block header %}
-      <!-- Flex container begins -->
-      <div class="container-flex">
-        <div class="row">
-          <div>
-            <!-- Title for page -->
-            <h1 id="page-header" class="page-header">Viewing all booked events for BarryChen87</h1>
-          </div>
+<!-- Booking History page Jumbotron -->
+<div class="p-5 bookingjumbotronimage rounded-3">
+  <div class="jumbotronback container-fluid py-5">
+    <h1 class="display-5 fw-bold">User's Booking History</h1>
+    <p class="col-md-8 fs-4">
+      Are you excited for your upcoming events?
+    </p>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<!-- Flex container begins -->
+<div class="container-fluid">
+  <!-- title row -->
+  <div class="row">
+    <div class="col-12">
+      <h1 id="page-header" class="page-header">
+        Viewing all booked events for {{ current_user.first_name }} {{ current_user.surname }}
+      </h1>
+    </div>
+  </div>
+
+  <div class="row">
+    {% for order in orders %}
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+      <div class="card w-100">
+        <img class="card-img-top" src="{{ order.event.image }}" alt="event picture">
+        <div class="card-body">
+          <h5 class="card-title">{{ order.event.title }}</h5>
+          <span class="badge bg-success">Order #{{ order.id }}</span>
+          <p class="card-text">{{ order.event.description }}</p>
+          <p class="card-text">Tickets: {{ order.tickets_purchased }}</p>
+          <p class="card-text">Price per ticket: ${{ order.event.ticket_price }}</p>
+          <p class="card-text">Amount: ${{ order.purchased_amount }}</p>
+          <p class="card-text">Booked at: {{ order.booking_time.strftime('%Y-%m-%d %H:%M') }}</p>
         </div>
-
-        <!-- Row of events that the user has booked to be displayed as cards -->
-        <div class="row g-4">
-          <div class="col-12 col-sm-12 col-md-6 col-lg-3">
-            <!-- Card 1-->
-            <div class="card h-100 w-100">
-              <img src="static/img/MooncakeFestival.jpg" class="card-img-top" alt="Mid-Autumn Mooncake Festival">
-              <div class="card-body">
-                <h5 class="card-title">Mid-Autumn Festival</h5>
-                <p class="card-text-info">Booking ID: #0006</p>
-                <p class="card-text-info">Event booked on: 2nd September 2025, 1:33am</p>
-                <p class="card-text">Want a reminder about the details for your booked event? View Event for more details.
-                </p>
-                <a href="eventdetails.html" class="btn btn-success">View Event</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-sm-12 col-md-6 col-lg-3">
-            <!-- Card 2 -->
-            <div class="card h-100 w-100">
-              <img src="static/img/BurgerMeet.jpg" class="card-img-top" alt="BurgerMeet">
-              <div class="card-body">
-                <h5 class="card-title">BurgerMeet 3</h5>
-                <p class="card-text-info">Booking ID: #0005</p>
-                <p class="card-text-info">Event booked on: 17th August 2025, 11:57pm</p>
-                <p class="card-text">Want a reminder about the details for your booked event? View Event for more details.
-                </p>
-                <a href="eventdetails.html" class="btn btn-success">View Event</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-sm-12 col-md-6 col-lg-3">
-            <!-- Card 3 -->
-            <div class="card h-100 w-100">
-              <img src="static/img/Lemonade.jpg" class="card-img-top" alt="Lemonade">
-              <div class="card-body">
-                <h5 class="card-title">Backyard Lemonade</h5>
-                <p class="card-text-info">Booking ID: #0004</p>
-                <p class="card-text-info">Event booked on: 23rd July 2025, 9:00am</p>
-                <p class="card-text">Want a reminder about the details for your booked event? View Event for more details.
-                </p>
-                <a href="eventdetails.html" class="btn btn-success">View Event</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-sm-12 col-md-6 col-lg-3">
-            <!-- Card 4 -->
-            <div class="card h-100 w-100">
-              <img src="static/img/Bobafest2026.jpg" class="card-img-top" alt="Bobafest2026">
-              <div class="card-body">
-                <h5 class="card-title">Bobafest2026</h5>
-                <p class="card-text-info">Booking ID: #0003</p>
-                <p class="card-text-info">Event booked on: 22nd July 2025, 8:16am</p>
-                <p class="card-text">Want a reminder about the details for your booked event? View Event for more details.
-                </p>
-                <a href="eventdetails.html" class="btn btn-success">View Event</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-sm-12 col-md-6 col-lg-3">
-            <!-- Card 5 -->
-            <div class="card h-100 w-100">
-              <img src="static/img/EatYourGreens.jpg" class="card-img-top" alt="EatYourGreens">
-              <div class="card-body">
-                <h5 class="card-title">EatYourGreens</h5>
-                <p class="card-text-info">Booking ID: #0002</p>
-                <p class="card-text-info">Event booked on: 25th June 2025, 12:30pm</p>
-                <p class="card-text">Want a reminder about the details for your booked event? View Event for more details.
-                </p>
-                <a href="eventdetails.html" class="btn btn-success">View Event</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-sm-12 col-md-6 col-lg-3">
-            <!-- Card 6 -->
-            <div class="card h-100 w-100">
-              <img src="static/img/TasteOfTakoyaki.jpg" class="card-img-top" alt="Taste of Takoyaki">
-              <div class="card-body">
-                <h5 class="card-title">Taste of Takoyaki</h5>
-                <p class="card-text-info">Booking ID: #0001</p>
-                <p class="card-text-info">Event booked on: 24th June 2025, 10:55pm</p>
-                <p class="card-text">Want a reminder about the details for your booked event? View Event for more details.
-                </p>
-                <a href="eventdetails.html" class="btn btn-success">View Event</a>
-              </div>
-            </div>
-          </div>
+        <div class="card-footer">
+          <a href="{{ url_for('events.show', event_id=order.event.id) }}" class="btn btn-success">View Event</a>
         </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
 {% endblock %}

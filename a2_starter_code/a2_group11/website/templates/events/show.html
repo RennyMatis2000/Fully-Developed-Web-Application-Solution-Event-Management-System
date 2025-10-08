@@ -14,7 +14,7 @@
 
       <div class="float-right text-right">
         <p class="mb-0">Vendors attending: </p>
-        <h2 id="Vendors">{{event.vendor_names}}</h2> 
+        <h2 id="Vendors">{{event.vendor_names}}</h2>
       </div>
     </div>
   </div>
@@ -24,35 +24,45 @@
     <div class="col-md-12">
       <div class="card my-3">
         <div class="card-body">
-            <img class="card-img-top" src="{{ event.image }}" alt = "event image">
-              <small class="font-weight-bold text-muted">{{event.venue}}</small>
-              <h5 class="mt-0">{{event.title}}</h5>
-              <p>{{event.description}}</p>
-              <a href="{{ url_for('events.purchase_tickets', event_id=event.id) }}" class="btn btn-success">
-                Book Now
-              </a>
+          <img class="card-img-top" src="{{ event.image }}" alt="event image">
+          <small class="font-weight-bold text-muted">{{event.venue}}</small>
+          <h5 class="mt-0">{{event.title}}</h5>
+          <span class="badge bg-success">{{event.status.name}}</span>
+          <p>{{event.description}}</p>
+          <a href="{{ url_for('events.purchase_tickets', event_id=event.id) }}" class="btn btn-success">
+            Book Now
+          </a>
+          {% if current_user.id == event.creator_id %}
+          <a href="{{ url_for('events.update', event_id=event.id) }}" class="btn btn-primary">
+            Update Event
+          </a>
+          <a href="{{ url_for('events.cancel', event_id=event.id) }}" class="btn btn-danger"
+            onclick="return confirm('Are you sure you want to cancel this event?');">
+            Cancel Event
+          </a>
+          {% endif %}
 
-            </div>
-          </div>
         </div>
       </div>
     </div>
   </div>
-  <hr>
-  <!-- Comments -->
-  <div class="row">
-    <div class="col-md-12">
-      <h2 class="category-header">Comments</h2>
-    </div>
-  </div>
+</div>
 
-  <div class="row border-bottom"> 
-    {{ render_form(form,"/events/{0}/comment".format(event.id), button_map={"submit": "success"}) }}
+<hr>
+<!-- Comments -->
+<div class="row">
+  <div class="col-md-12">
+    <h2 class="category-header">Comments</h2>
+  </div>
+</div>
+
+<div class="row border-bottom">
+  {{ render_form(form,"/events/{0}/comment".format(event.id), button_map={"submit": "success"}) }}
 
   <div class="row border-bottom">
     {% for comment in event.comments %}
     <div class="col-md-12">
-      <b>{{comment.user}} <span class="ml-2 text-muted">{{comment.comment_date}}</span></b>
+      <b>User {{comment.user.first_name}} {{comment.user.surname}} <span class="ml-2 text-muted">posted comment at {{comment.comment_date}}</span></b>
       <p>{{comment.contents}}</p>
     </div>
     {% endfor %}
