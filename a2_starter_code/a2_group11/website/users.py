@@ -9,7 +9,8 @@ user_bp = Blueprint('users', __name__, url_prefix='/user')
 @user_bp.route('/display_booking_history')
 @login_required
 def display_booking_history():
-    return render_template('userbookinghistory.html')
+    orders = current_user.orders
+    return render_template('userbookinghistory.html', orders=orders)
 
 @user_bp.route('/create_update_event')
 @login_required
