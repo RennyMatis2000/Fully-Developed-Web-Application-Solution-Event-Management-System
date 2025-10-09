@@ -19,7 +19,7 @@ git clone https://github.com/RennyMatis2000/Fully-Developed-Web-Application-Solu
 Before setting up the environment, navigate to the project folder where `main.py` and `requirements.txt` are located:
 
 ```bash
-cd Fully-Developed-Web-Application-Solution-Event-Management-System/a2_starter_code/a2_group11
+cd a2_starter_code/a2_group11
 ```
 
 Then, install the dependencies by creating and activating a virtual environment:
