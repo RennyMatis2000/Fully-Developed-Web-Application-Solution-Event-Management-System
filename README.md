@@ -42,6 +42,14 @@ Then, install the dependencies by creating and activating a virtual environment.
 
 ---
 
+## Setting Up the Database
+
+Before starting the app for the first time, you need to create the database tables:
+
+```bash
+python create_db.py
+```
+
 ## Running the Project
 
 Make sure you are in the application folder and the virtual environment is active before starting the application:
