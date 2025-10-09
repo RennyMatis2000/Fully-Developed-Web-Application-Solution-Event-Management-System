@@ -71,6 +71,8 @@ Fully-Developed-Web-Application-Solution-Event-Management-System/
 │
 ├── a2_starter_code/
 │   └── a2_group11/
+│       ├── venv/
+│       ├── website/
 │       ├── main.py
 │       ├── requirements.txt
 │       ├── static/
