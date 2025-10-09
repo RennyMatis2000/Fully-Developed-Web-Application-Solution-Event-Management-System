@@ -4,7 +4,8 @@
 
 A fully developed web application solution for an event management system. Developed in a team by Renny Matis, Boon Leon, Christina Antony Sankoorikal, and Samantha Cray.
 
-You may download the ZIP file from this repository, or clone it to your local machine through Git CLI with the command below:
+
+Clone it to your local machine through Git CLI with the command below:
 
 ```bash
 git clone https://github.com/RennyMatis2000/Fully-Developed-Web-Application-Solution-Event-Management-System.git
@@ -60,19 +61,7 @@ python main.py
 
 ---
 
-## Notes
-
-- Always ensure you are inside `a2_starter_code/a2_group11` before creating or activating the virtual environment.
-- Creating the virtual environment outside this folder may cause missing dependency issues.
-- If you encounter dependency issues, upgrade pip:
-
-```bash
-python -m pip install --upgrade pip
-```
-
----
-
-## Project Structure
+## Project Structure (will look something like)
 
 ```plaintext
 Fully-Developed-Web-Application-Solution-Event-Management-System/
@@ -88,12 +77,3 @@ Fully-Developed-Web-Application-Solution-Event-Management-System/
 │       └── ...
 └── README.md
 ```
-
----
-
-## Contributors
-
-- Renny Matis  
-- Boon Leon  
-- Christina Antony Sankoorikal  
-- Samantha Cray
