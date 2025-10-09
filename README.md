@@ -18,7 +18,13 @@ git clone https://github.com/RennyMatis2000/Fully-Developed-Web-Application-Solu
 
 ### Prerequisite
 
-You should install the dependencies before running the code with the following commands:
+Before setting up the environment, navigate to the project folder where `main.py` and `requirements.txt` are located:
+
+```bash
+cd Fully-Developed-Web-Application-Solution-Event-Management-System/a2_starter_code/a2_group11
+```
+
+Then, install the dependencies by creating and activating a virtual environment:
 
 ```bash
 python -m venv venv
@@ -30,7 +36,7 @@ pip install -r requirements.txt
 
 ## Running the Project
 
-Before running, make sure you are in the project folder:
+Once the dependencies are installed and the virtual environment is active, make sure you are still in the same folder:
 
 ```bash
 cd Fully-Developed-Web-Application-Solution-Event-Management-System/a2_starter_code/a2_group11
@@ -46,7 +52,9 @@ python main.py
 
 ## Notes
 
-Make sure you are inside the correct directory (`a2_starter_code/a2_group11`) before creating or activating the virtual environment.
+Always ensure you are inside the correct directory (`a2_starter_code/a2_group11`) before creating or activating the virtual environment.
+
+Creating the virtual environment outside this folder may cause missing dependency issues.
 
 If you encounter any dependency issues, upgrade pip using the following command:
 
