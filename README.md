@@ -44,13 +44,7 @@ Then, install the dependencies by creating and activating a virtual environment.
 
 ## Running the Project
 
-Make sure you are in the application folder and the virtual environment is active:
-
-```bash
-cd Fully-Developed-Web-Application-Solution-Event-Management-System/a2_starter_code/a2_group11
-```
-
-Start the application:
+Make sure you are in the application folder and the virtual environment is active before starting the application:
 
 ```bash
 python main.py
