@@ -34,7 +34,8 @@
         <img class="card-img-top" src="{{ order.event.image }}" alt="event picture">
         <div class="card-body">
           <h5 class="card-title">{{ order.event.title }}</h5>
-          <span class="badge bg-success">Order #{{ order.id }}</span>
+          <span class="badge bg-success mb-3">Event Status: {{ order.event.status.name }}</span>
+          <p class="card-text">Order #{{ order.id }}</p>
           <p class="card-text">{{ order.event.description }}</p>
           <p class="card-text">Tickets: {{ order.tickets_purchased }}</p>
           <p class="card-text">Price per ticket: ${{ order.event.ticket_price }}</p>
