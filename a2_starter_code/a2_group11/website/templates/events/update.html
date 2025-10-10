@@ -1,26 +1,30 @@
 {% extends 'base.html' %}
+<!--This is extending the basic layout already in base.html-->
 
 {% from 'bootstrap5/form.html' import render_form %}
-
+<!--Ensures consistent bootstrap-->
 {% block content %}
 
-<!-- Container -->
+<!-- Event update page container -->
 <div class="container-create">
-<!-- Event Creation and Update page Jumbotron -->
+<!-- Jumbotron banner(large banner ) for update event page-->
 <div class="p-5 creationjumbotronimage rounded-3">
     <div class="jumbotronback container-fluid py-5 ">
+      <!-- Page title-->
         <h1 class="display-5 fw-bold">Update an Event</h1>
+        <!-- Description-->
         <p class="col-md-8 fs-4">At FoodieVent, it's not just an event. Share memories, bring people
             together. Enjoy food, drinks, and company. Update your pre-existing event here.</p>
     </div>
 </div>
 
-<!-- Form -->
+<!-- Form section -->
     <div class="row mt-5">
+      <!-- Renders the event update form-->
       <div class="col-12 col-md-10 col-lg-8 offset-md-2">
         {{ render_form(form, button_map={'submit': 'success'}) }}
       </div>
     </div>
   </div>
-
+<!-- end of the main container. -->
 {% endblock %}
