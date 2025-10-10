@@ -11,7 +11,7 @@
       <!--Left side displaying event titles and categories -->
       <div class="float-left">
         <h1 class="mb-0">{{event.title}}</h1>
-        <p>Event Category: {{ event.category_type.name }}</p>
+        <p>Located at, {{event.venue}}</p>
       </div>
       <!--Right side displaying vendor information-->
       <div class="float-right text-right">
@@ -26,13 +26,10 @@
     <div class="col-md-12">
       <div class="card my-3">
         <div class="card-body">
-          <!-- Grabbing event image -->
-          <img class="card-img-top" src="{{ event.image }}" alt="event image">
-          <!-- Event location and status infomation-->
-          <small class="font-weight-bold text-muted">Located at, {{event.venue}}</small>
-          <!--Title in the card -->
-          <h5 class="mt-0">{{event.title}}</h5>
-          <!-- Ticket status and ticket count -->
+          <img class="card-img-top mb-2 mt-2" src="{{ event.image }}" alt="event image">
+          <h5 class="mt-0">Event Category: {{ event.category_type.name }}</h5>
+          <h5 class="mt-0">Free Sampling: {{ event.free_sampling }}</h5>
+          <h5 class="mt-0">Provides Takeaway: {{ event.provide_takeaway }}</h5>
           <span class="badge bg-success">Event Status: {{event.status.name}}</span>
           <span class="badge bg-success">Tickets Remaining: {{event.total_tickets}}</span>
           <!-- Description of the event-->
