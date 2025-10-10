@@ -1,17 +1,19 @@
 {% extends "base.html" %}
-
+<!--This is extending the basic layout already in base.html-->
 {% from 'bootstrap5/form.html' import render_form %}
-
+<!--Importing bootstrap 5 form -->
 {% block content %}
 
 <div class="container">
+  <!--Event heading: displays title, category and vendors-->
   <div class="row mt-5 mb-3">
     <div class="col-md-12">
+      <!--Left side displaying event titles and categories -->
       <div class="float-left">
         <h1 class="mb-0">{{event.title}}</h1>
         <p>Located at, {{event.venue}}</p>
       </div>
-
+      <!--Right side displaying vendor information-->
       <div class="float-right text-right">
         <p class="mb-0">Vendors attending: </p>
         <h2 id="Vendors">{{event.vendor_names}}</h2>
@@ -19,7 +21,7 @@
     </div>
   </div>
 
-  <!-- Event -->
+  <!-- Event details section  -->
   <div class="row">
     <div class="col-md-12">
       <div class="card my-3">
@@ -30,10 +32,13 @@
           <h5 class="mt-0">Provides Takeaway: {{ event.provide_takeaway }}</h5>
           <span class="badge bg-success">Event Status: {{event.status.name}}</span>
           <span class="badge bg-success">Tickets Remaining: {{event.total_tickets}}</span>
+          <!-- Description of the event-->
           <p>{{event.description}}</p>
+          <!-- Book now button-->
           <a href="{{ url_for('events.purchase_tickets', event_id=event.id) }}" class="btn btn-success">
             Book Now
           </a>
+          <!--If the signed in user is the creator of the event, display update and cancel buttons-->
           {% if current_user.id == event.creator_id %}
           <a href="{{ url_for('events.update', event_id=event.id) }}" class="btn btn-primary">
             Update Event
@@ -51,7 +56,7 @@
 </div>
 
 <hr>
-<!-- Comments -->
+<!-- Comment section -->
 <div class="row">
   <div class="col-md-12">
     <h2 class="category-header">Comments</h2>
@@ -59,12 +64,15 @@
 </div>
 
 <div class="row border-bottom">
+  <!-- Rendering the comment form from bootstrap macro-->
   {{ render_form(form,"/events/{0}/comment".format(event.id), button_map={"submit": "success"}) }}
-
+<!-- Display all user comments and loop through all-->
   <div class="row border-bottom">
     {% for comment in event.comments %}
     <div class="col-md-12">
+      <!-- Display username and timestamp-->
       <b>User {{comment.user.first_name}} {{comment.user.surname}} <span class="ml-2 text-muted">posted comment at {{comment.comment_date}}</span></b>
+      <!--Comments text-->
       <p>{{comment.contents}}</p>
     </div>
     {% endfor %}
