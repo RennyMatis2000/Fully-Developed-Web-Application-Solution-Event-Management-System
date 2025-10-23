@@ -31,6 +31,7 @@
 {% endblock %}
 
 {% block content %}
+
 <!-- Flex container begins -->
 <div class="container-flex">
 
@@ -60,6 +61,30 @@
     </div>
   </div>
   <!-- Flex container ends -->
+</div>
+
+<!-- Search Jumbotron -->
+<div class="container">
+  <div class="row justify-content-center mt-5 pb-4">
+    <div class="col-md-12">
+      <div class="card-search shadow p-5 mb-5">
+        <h1 class="text-center mb-3">Find the event that is just right for you.</h1>
+        <form action="{{ url_for('main.search') }}" method="get" role="search">
+          <h2 class="text-center mb-3">Don't skip an opportunity! Search FoodieVent.</h2>
+          <div class="input-group input-group-lg">
+            <input
+              type="search"
+              name="search"
+              id="SearchForm"
+              class="form-control"
+              placeholder="Search FoodieVent"
+              aria-label="Search FoodieVent">
+            <button type="submit" class="btn btn-success">Search</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- Flex container begins -->
@@ -97,6 +122,8 @@
           <div class="card-body">
             <h5 class="card-title">{{ event.title }}</h5>
             <span class="badge bg-success">{{ event.status.name }}</span>
+            <p class="card-text">Start Time: {{ event.start_time }}</p>
+            <p class="card-text">End Time: {{ event.end_time }}</p>
             <p class="card-text">{{ event.description }}</p>
           </div>
           <div class="card-footer"><a href="{{ url_for('events.show', event_id=event.id) }}" class="btn btn-success">

@@ -12,9 +12,7 @@ def show(event_id):
     event = db.session.scalar(db.select(Event).where(Event.id==event_id))
     # Generate comment form
     form = CommentForm()
-    # If database doesn't return a destination, show a 404 page
-    if not event:
-      abort(404)
+    live_status()
     return render_template('events/show.html', event=event, form=form)
 
 # Create event method
@@ -46,7 +44,8 @@ def create():
     db.session.commit()
     flash('Successfully created new Food and Drink Festival event', 'success')
     return redirect(url_for('events.create'))
-   # Always end with redirect when form is valid
+# Always end with redirect when form is valid
+  live_status()
   return render_template('events/create.html', form=form)
 
 # Update event method
@@ -75,8 +74,10 @@ def update(event_id):
       
     db.session.commit()
     flash('Successfully updated Food and Drink Festival event', 'success')
+    live_status()
     return redirect(url_for('events.update', event_id=event.id))
     # Always end with redirect when form is valid
+  live_status()
   return render_template('events/update.html',  form=form, event=event)
 
 # Cancel event
@@ -128,6 +129,7 @@ def purchase_tickets(event_id):
       flash(f'Thank you for your purchase! Your order number is #{order.id}')
       return redirect(url_for('users.display_booking_history'))
       # Always end with redirect when form is valid
+  live_status()
   return render_template('events/purchase.html', form=form, event=event)
 
 @event_bp.route('/<int:event_id>/comment', methods = ['GET', 'POST'])
@@ -147,4 +149,25 @@ def comment(event_id):
     flash("Your comment has been added", "success")
     
 # using redirect sends a GET request to destination.show
+  live_status()
   return redirect(url_for('events.show', event_id=event_id))
+
+def live_status():
+  now = datetime.now()
+  events = db.session.scalars(db.select(Event)).all()
+
+  for event in events:
+    if event.status == EventStatus.CANCELLED:
+        new_status = EventStatus.CANCELLED
+    elif (event.total_tickets or 0) <= 0:
+        new_status = EventStatus.SOLDOUT
+    elif event.end_time and now <= event.end_time:
+        new_status = EventStatus.OPEN
+    else:
+        new_status = EventStatus.INACTIVE
+
+    if event.status != new_status:
+      event.status = new_status
+      event.status_date = now
+
+  db.session.commit()

@@ -4,6 +4,7 @@ from flask_login import login_user, login_required, logout_user
 from .models import User
 from .forms import LoginForm, RegisterForm
 from . import db
+from . events import live_status
 
 # Create a blueprint - make sure all BPs have unique names
 auth_bp = Blueprint('auth', __name__)
@@ -13,7 +14,6 @@ auth_bp = Blueprint('auth', __name__)
 # view function
 def login():
     login_form = LoginForm()
-    error = None
     if login_form.validate_on_submit():
         email= login_form.email.data
         password = login_form.password.data
@@ -27,6 +27,7 @@ def login():
             nextp = request.args.get('next') # this gives the url from where the login page was accessed
             print(nextp)
             if nextp is None or not nextp.startswith('/'):
+                live_status()
                 return redirect(url_for('main.index'))
             return redirect(nextp)
         else:
@@ -36,6 +37,7 @@ def login():
 @auth_bp.route('/register', methods=['GET','POST'])
 def register():
     form = RegisterForm()
+    error = None
     if form.validate_on_submit():
         user = User(
             first_name=form.first_name.data,
@@ -55,4 +57,5 @@ def register():
 @login_required
 def logout():
     logout_user()
+    live_status()
     return redirect(url_for('main.index'))
