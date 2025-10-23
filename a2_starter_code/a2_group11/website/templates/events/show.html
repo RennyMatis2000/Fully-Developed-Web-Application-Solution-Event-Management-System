@@ -57,23 +57,21 @@
 
 <hr>
 <!-- Comment section -->
-<div class="row">
-  <div class="col-md-12">
-    <h2 class="category-header">Comments</h2>
+<div class="row mb-4">
+  <div class="col-12">
+    {{ render_form(form, "/events/{0}/comment".format(event.id), button_map={"submit": "success"}) }}
   </div>
 </div>
 
-<div class="row border-bottom">
-  <!-- Rendering the comment form from bootstrap macro-->
-  {{ render_form(form,"/events/{0}/comment".format(event.id), button_map={"submit": "success"}) }}
-<!-- Display all user comments and loop through all-->
-  <div class="row border-bottom">
+<div class="row">
+  <div class="col-12">
     {% for comment in event.comments %}
-    <div class="col-md-12">
-      <!-- Display username and timestamp-->
-      <b>User {{comment.user.first_name}} {{comment.user.surname}} <span class="ml-2 text-muted">posted comment at {{comment.comment_date}}</span></b>
-      <!--Comments text-->
-      <p>{{comment.contents}}</p>
+    <div class="border-bottom pb-3 mb-3">
+      <b>
+        User {{ comment.user.first_name }} {{ comment.user.surname }}
+        <span class="ms-2 text-muted">posted at {{ comment.comment_date }}</span>
+      </b>
+      <p class="comment-body mb-0">{{ comment.contents }}</p>
     </div>
     {% endfor %}
   </div>

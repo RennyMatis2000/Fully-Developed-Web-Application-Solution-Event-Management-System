@@ -228,13 +228,14 @@ font-family: 'Merriweather';
 }
 
 /* offset container-flex expanding offscreen through use of padding */
-.container-flex {
+.container-footer .border-bottom 
+{
   padding-left: 0.75rem;
   padding-right: 0.75rem;
 }
 
 /* offset row border bottom expanding offscreen through use of padding */
-.border-bottom {
+.container-footer .border-bottom {
   padding-left: 0.75rem;
   padding-right: 0.75rem;
 }

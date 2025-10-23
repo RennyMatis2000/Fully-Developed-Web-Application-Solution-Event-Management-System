@@ -14,24 +14,26 @@ auth_bp = Blueprint('auth', __name__)
 # view function
 def login():
     login_form = LoginForm()
-    if login_form.validate_on_submit():
-        email= login_form.email.data
+    error = None
+    if(login_form.validate_on_submit()==True):
+        #get the username and password from the database
+        email = login_form.email.data
         password = login_form.password.data
         user = db.session.scalar(db.select(User).where(User.email==email))
+        #if there is no user with that name
         if user is None:
-            error = 'Incorrect email'
-        elif not check_password_hash(user.password_hash, password): # takes the hash and cleartext password
+            error = 'Incorrect username'#could be a security risk to give this much info away
+        #check the password - notice password hash function
+        elif not check_password_hash(user.password_hash, password): # takes the hash and password
             error = 'Incorrect password'
         if error is None:
+            #all good, set the login_user of flask_login to manage the user
             login_user(user)
-            nextp = request.args.get('next') # this gives the url from where the login page was accessed
-            print(nextp)
-            if nextp is None or not nextp.startswith('/'):
-                live_status()
-                return redirect(url_for('main.index'))
-            return redirect(nextp)
+            live_status()
+            return redirect(url_for('main.index'))
         else:
             flash(error)
+    live_status()
     return render_template('user.html', form=login_form, heading='Login')
 
 @auth_bp.route('/register', methods=['GET','POST'])
