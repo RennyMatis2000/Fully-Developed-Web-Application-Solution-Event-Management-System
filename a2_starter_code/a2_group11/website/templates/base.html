@@ -68,11 +68,13 @@
                             </li>
                             {% endif %}
                         </ul>
-                        <div class="input-group input-group-lg">
+                                                <div class="input-group input-group-lg">
                             <input type="search" name="search" id="SearchForm" class="form-control"
                                 placeholder="Search FoodieVent" aria-label="Search FoodieVent">
                             <button type="submit" class="btn btn-success">Search</button>
                         </div>
+                    </div>
+                </div>
             </nav>
             <!-- Code for using Flask flash -->
              <div class="container-fluid mt-2">
@@ -105,32 +107,34 @@
                 <ul class="nav justify-content-center border-bottom pb-3 mb-3">
                     {% if current_user.is_authenticated %}
                     <li class="nav-item">
-                        <href="{{ url_for('main.index') }}" class="nav-link px-2 text-body-secondary">Home</a>
+                        <a href="{{ url_for('main.index') }}" class="nav-link px-2 text-body-secondary">Home</a>
                     </li>
                     <li class="nav-item">
-                        <href="{{ url_for('main.index') }}#container-search" class="nav-link px-2 text-body-secondary">
+                        <a href="{{ url_for('main.index') }}#container-search"
+                            class="nav-link px-2 text-body-secondary">
                             Search</a>
                     </li>
                     <li class="nav-item">
-                        <href="{{ url_for('users.display_booking_history') }}"
+                        <a href="{{ url_for('users.display_booking_history') }}"
                             class="nav-link px-2 text-body-secondary">Booking</a>
                     </li>
                     <li class="nav-item">
-                        <href="{{ url_for('auth.logout') }}" class="nav-link px-2 text-body-secondary">Logout</a>
+                        <a href="{{ url_for('auth.logout') }}" class="nav-link px-2 text-body-secondary">Logout</a>
                     </li>
                     {% else %}
                     <li class="nav-item">
-                        <href="{{ url_for('main.index') }}" class="nav-link px-2 text-body-secondary">Home</a>
+                        <a href="{{ url_for('main.index') }}" class="nav-link px-2 text-body-secondary">Home</a>
                     </li>
                     <li class="nav-item">
-                        <href="{{ url_for('main.index') }}#container-search" class="nav-link px-2 text-body-secondary">
+                        <a href="{{ url_for('main.index') }}#container-search"
+                            class="nav-link px-2 text-body-secondary">
                             Search</a>
                     </li>
                     <li class="nav-item">
-                        <href="{{ url_for('auth.register') }}" class="nav-link px-2 text-body-secondary">Register</a>
+                        <a href="{{ url_for('auth.register') }}" class="nav-link px-2 text-body-secondary">Register</a>
                     </li>
                     <li class="nav-item">
-                        <href="{{ url_for('auth.login') }}" class="nav-link px-2 text-body-secondary">Login</a>
+                        <a href="{{ url_for('auth.login') }}" class="nav-link px-2 text-body-secondary">Login</a>
                     </li>
                     {% endif %}
                 </ul>
