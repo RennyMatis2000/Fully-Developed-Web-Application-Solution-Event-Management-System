@@ -55,7 +55,6 @@ class Event(db.Model):
     orders = db.relationship("Order", backref="event")
     comments = db.relationship("Comment", backref="event")
     creator = db.relationship("User", backref="events_created")
-    
 
     def __repr__(self):
         return f"Name: {self.title}"

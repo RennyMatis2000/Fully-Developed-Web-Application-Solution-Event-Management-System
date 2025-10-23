@@ -137,6 +137,33 @@ body {
   font-weight: bold;
 }
 
+/* change search feature text */
+.text-center {
+  font-family: 'Merriweather';
+  color:  #008b35;
+  font-weight: bold;
+}
+
+.search-text {
+  font-family: 'Merriweather';
+  color: #008b35;
+}
+
+.container-footer
+{
+  background-color:  rgb(217, 240, 206);
+}
+
+.container-error {
+  font-family: 'Merriweather';
+  font-weight: bold;
+  color: #556B2F;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  display:flex;
+  justify-content:center;
+}
+
 /* change card font for the descriptions */
 .card-body {
   font-family: 'Raleway';
@@ -192,6 +219,12 @@ footer {
 .foodievent-footer
 {
 background-color: rgb(211, 231, 201);
+font-family: 'Merriweather';
+}
+
+.card-search
+{
+  background-color: rgb(211, 231, 201);
 }
 
 /* offset container-flex expanding offscreen through use of padding */
