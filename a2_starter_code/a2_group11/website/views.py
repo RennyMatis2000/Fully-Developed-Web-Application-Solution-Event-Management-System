@@ -17,7 +17,7 @@ def search():
     if request.args['search'] and request.args['search'] != "":
         print(request.args['search'])
         query = "%" + request.args['search'] + "%"
-        events = db.session.scalars(db.select(Event).where(Event.description.like(query).order_by(Event.start_time)))
+        events = db.session.scalars(db.select(Event).where(Event.description.like(query)).order_by(Event.start_time))
         live_status()
         return render_template('index.html', events=events)
     else:
