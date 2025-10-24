@@ -179,3 +179,5 @@ def live_status():
             event.status_date = now
 
     db.session.commit()
+
+    #test123
